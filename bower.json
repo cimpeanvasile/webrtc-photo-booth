@@ -1,0 +1,26 @@
+{
+  "name": "webrtc-photo-booth",
+  "description": "A component for taking pictures",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "webrtc",
+    "photo",
+    "booth"
+  ],
+  "authors": [
+    "Cimpean Vasile"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9"
+  }
+}
