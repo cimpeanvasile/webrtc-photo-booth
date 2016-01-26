@@ -1,0 +1,25 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+#booth-container {
+	width: 800px;
+	height: 480px;
+	max-height: 100%;
+	max-width: 100%;
+
+	margin: 30px auto;
+}
+
+#film-roll {
+	height: 120px;
+	background: black;
+	margin-top: 5px;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+canvas {
+	display: none;
+}

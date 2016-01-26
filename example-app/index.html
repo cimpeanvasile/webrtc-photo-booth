@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebRTC Photo Booth</title>
+	<link rel="stylesheet" href="../webrtc-photo-booth.css">
+	<link rel="stylesheet" href="index.css">
+
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../webrtc-photo-booth.js"></script>
+	<script src="index.js"></script>
+</head>
+<body>
+	<div ng-app="example-app">
+		<div id="booth-container">
+			<webrtc-photo-booth res-width="1280" res-height="720" photoCallback="takePhoto"></webrtc-photo-booth>
+			<div id="film-roll">
+				<img src="image.source" ng-repeat="image in images">
+			</div>
+		</div>
+	</div>
+	<canvas id="render-canvas"></canvas>
+</body>
+</html>
