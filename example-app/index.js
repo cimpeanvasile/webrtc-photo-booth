@@ -2,16 +2,19 @@ var module = angular.module('example-app', ['webrtc-photo-booth']);
 
 module.controller('ExampleAppController', function($scope) {
 	$scope.images = [];
-	var canvas = document.getElementById('render-canvas');
-	var context = canvas.getContext('2d');
+	var id = 0;
+	
+	$scope.takePhoto = function(image) {
+		id++;
+		$scope.images.push({id: id, source: image});
+	}
 
-	$scope.takePhoto = function(video) {
-		console.log("controller: " + video.videoHeight);
-		var height = video.videoHeight;
-		var width = video.videoWidth;
-		context.drawImage(video, 0, 0, width, height);
-
-		var data = canvas.toDataURL('image/png');
-		scope.images.push({source: data});
+	$scope.removePhoto = function(id) {
+		for (var i in $scope.images) {
+			if ($scope.images[i].id == id) {
+				$scope.images.splice(i, 1);
+				return;
+			}
+		}
 	}
 });

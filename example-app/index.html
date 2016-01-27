@@ -11,10 +11,12 @@
 </head>
 <body>
 	<div ng-app="example-app">
-		<div id="booth-container">
-			<webrtc-photo-booth res-width="1280" res-height="720" photoCallback="takePhoto"></webrtc-photo-booth>
-			<div id="film-roll">
-				<img src="image.source" ng-repeat="image in images">
+		<div id="booth-container" ng-controller="ExampleAppController">
+			<webrtc-photo-booth photo-callback="takePhoto(image)"></webrtc-photo-booth>
+			<div id="film-roll" class="clearfix">
+				<div class="photo" ng-repeat="image in images" ng-click="removePhoto(image.id)">
+					<img src="{{image.source}}">
+				</div>
 			</div>
 		</div>
 	</div>

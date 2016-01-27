@@ -42,3 +42,7 @@
 .webrtc-photo-booth button:active {
 	background: orange;
 }
+
+.webrtc-photo-booth canvas {
+	display: none;
+}

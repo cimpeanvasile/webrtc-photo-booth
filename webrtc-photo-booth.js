@@ -7,19 +7,20 @@ module.directive('webrtcPhotoBooth', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			'res-width': '@',
-			'res-height': '@',
+			'resWidth': '@',
+			'resHeight': '@',
 			'photoCallback': '&'
 		},
 		template: '\
 			<div class="webrtc-photo-booth">										\
 				<video>Camera not available</video>									\
-				<button ng-click="takePhoto">Take Photo</button>					\
+				<button ng-click="takePhoto()">Take Photo</button>					\
+				<canvas></canvas>													\
 			</div>																	\
 		',
 		link: function(scope, element, attrs) {
 			video = element.find('video')[0];
-
+			canvas = element.find('canvas')[0];
 			navigator.getUserMedia = ( navigator.getUserMedia ||
 								navigator.webkitGetUserMedia ||
 								navigator.mozGetUserMedia ||
@@ -28,8 +29,8 @@ module.directive('webrtcPhotoBooth', function() {
 			var constraints = {
 				audio: false,
 				video: {
-					width: attrs.resWidth,
-					height: attrs.resHeight
+					width: attrs.resWidth || 640,
+					height: attrs.resHeight || 480
 				}
 			};
 
@@ -46,10 +47,16 @@ module.directive('webrtcPhotoBooth', function() {
 			});
 		},
 		controller: function($scope) {
-			console.log($scope.photoCallback);
 			$scope.takePhoto = function() {
-				console.log("directive: " + video.videoHeight);
-				$scope.photoCallback(video);
+				var context = canvas.getContext('2d');
+				var height = video.videoHeight;
+				var width = video.videoWidth;
+				canvas.width = width;
+				canvas.height = height;
+				context.drawImage(video, 0, 0, width, height);
+
+				var image = canvas.toDataURL('image/png');
+				$scope.photoCallback({image: image});
 			}
 		}
 	}

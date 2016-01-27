@@ -13,13 +13,31 @@ html, body {
 }
 
 #film-roll {
-	height: 120px;
+	min-height: 200px;
 	background: black;
 	margin-top: 5px;
 	border-radius: 3px;
 	padding: 5px;
 }
 
-canvas {
-	display: none;
+#film-roll img {
+	width: auto;
+	height: 100px;
+	float: left;
+	margin: 5px;
+	border-radius: 5px;
 }
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
